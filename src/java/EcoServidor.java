@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 public class EcoServidor implements Runnable {
 
     public static final int PORT = 1134;
+    public String adios;
 
     public void procedimiento() throws IOException {
 
@@ -61,7 +62,7 @@ public class EcoServidor implements Runnable {
                         cont = 0;
                     }
                     
-                    if (str.equals("Adios")) {
+                    if (adios.equals("adios")) {
                         break;
                     }
                 }

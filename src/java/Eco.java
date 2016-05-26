@@ -31,12 +31,21 @@ public class Eco extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            
-           EcoServidor eco = new EcoServidor();
-           new Thread(eco).start();
-           
-           //eco.procedimiento();
+           EcoServidor eco = new EcoServidor(); 
+           Thread t = new Thread(eco);
+            if (request.getParameter("btn_stop") == null)
+            {           
+           t.start();
            response.sendRedirect("index.html");
+            }
+            else{
+                String salir = request.getParameter("btn_stop");
+                eco.adios =salir;
+           
+           t.start();
+           response.sendRedirect("Home.jsp");
+            }
+            
         }
     }
 
@@ -80,4 +89,8 @@ public class Eco extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    public Eco() {
+        super();
+        
+    }
 }
